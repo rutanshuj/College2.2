@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Featured"
+        android:id="@+id/nav_featured"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <item android:title="Categories"
+        android:id="@+id/nav_categories"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <item android:title="Drafts"
+        android:id="@+id/nav_item_draft"
+
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+
+
+    <item android:title="Others"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+        <menu
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <item
+                android:title="Spam"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <item
+                android:title="Bin"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </menu>
+    </item>
+
+    <group android:id="@+id/group_settings_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <item android:title="Settings"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <item android:title="Help"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </group>
+
+</menu>

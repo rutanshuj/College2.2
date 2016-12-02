@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">College2.0</string>
+    <string name="SignUp"><u>"Wanna Sign Up?"</u></string>
+    <string name="ClickHere"><u>"Click here to Log In"</u></string>
+    <string name="title_activity_main_page1">MainPage1</string>
+
+    <!-- Categories Strings -->
+    <string name="arts">Arts &amp; Sciences</string>
+    <string name="arch">Architecture</string>
+    <string name="bio">Biology</string>
+    <string name="tech">Technology</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="robotics">Robotics</string>
+    <string name="sciences">Sciences</string>
+    <string name="humanities">Humanities</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_featured_tab">featured_tab</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="Home">Home</string>
+    
+    <string-array name="array_uni">
+    <item>Acharya N.G. Ranga Agricultural University</item>
+    <item>Acharya Nagarjuna University</item>
+    <item>Adikavi Nannaya University</item>
+    <item>Ahmedabad University</item>
+    <item>All India Institute of Medical Sciences Patna</item>
+    <item>Bhupendra Narayan Mandal University</item>
+    <item>Birsa Agricultural University</item>
+    <item>BML Munjal University</item>
+    <item>C. U. Shah University</item>
+    <item>Career Point University</item>
+    <item>Central University of Gujarat</item>
+    <item>Dr. D.Y. Patil Vidyapeeth</item>
+    <item>Himachal Pradesh Technical University</item>
+    <item>ICFAI University, Mizoram</item>
+    <item>ICFAI University, Sikkim</item>
+    <item>IFHE Hyderabad</item>
+    <item>Indian Institute of Technology Kanpur</item>
+    <item>Indian Institute of Technology Kharagpur</item>
+    <item>Indian Institute of Technology Madras</item>
+    <item>Indian Institute of Technology Roorkee</item>
+    <item>Islamic University of Science and Technology</item>
+    <item>Manipal Institute Of Technology</item>
+    <item>Vellore Institute of Technology</item>
+</string-array>
+</resources>
