@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         //Firebase.setAndroidContext(this);
 
     }
+    //comment
 
 //    public void signup(View v)
 //    {
