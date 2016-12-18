@@ -36,41 +36,40 @@ public class RecyclerView_Frag extends Fragment {
         recyclerView.setAdapter(mAdapter);
         prepareMovieData();
         return rootView;
-
     }
 
     private void prepareMovieData() {
-        Events_list movie = new Events_list("Mad Max: Fury Road", "Action & Adventure", "2015");
+        Events_list movie = new Events_list("Mad Max: Fury Road", "Action & Adventure", "2015", R.drawable.art);
         eventsList.add(movie);
 
-        movie = new Events_list("Inside Out", "Animation, Kids & Family", "2015");
+        movie = new Events_list("Inside Out", "Animation, Kids & Family", "2015", R.drawable.buisness);
         eventsList.add(movie);
 
-        movie = new Events_list("Star Wars: Episode VII - The Force Awakens", "Action", "2015");
+        movie = new Events_list("Star Wars: Episode VII - The Force Awakens", "Action", "2015", R.drawable.image1);
         eventsList.add(movie);
 
-        movie = new Events_list("Shaun the Sheep", "Animation", "2015");
+        movie = new Events_list("Shaun the Sheep", "Animation", "2015", R.drawable.buisness);
         eventsList.add(movie);
 
-        movie = new Events_list("The Martian", "Science Fiction & Fantasy", "2015");
+        movie = new Events_list("The Martian", "Science Fiction & Fantasy", "2015", R.drawable.buisness);
         eventsList.add(movie);
 
-        movie = new Events_list("Mission: Impossible Rogue Nation", "Action", "2015");
+        movie = new Events_list("Mission: Impossible Rogue Nation", "Action", "2015", R.drawable.buisness);
         eventsList.add(movie);
 
-        movie = new Events_list("Up", "Animation", "2009");
+        movie = new Events_list("Up", "Animation", "2009",R.drawable.buisness);
         eventsList.add(movie);
 
-        movie = new Events_list("Star Trek", "Science Fiction", "2009");
+        movie = new Events_list("Star Trek", "Science Fiction", "2009", R.drawable.literature);
         eventsList.add(movie);
 
-        movie = new Events_list("The LEGO Movie", "Animation", "2014");
+        movie = new Events_list("The LEGO Movie", "Animation", "2014", R.drawable.science);
         eventsList.add(movie);
 
-        movie = new Events_list("Iron Man", "Action & Adventure", "2008");
+        movie = new Events_list("Iron Man", "Action & Adventure", "2008",R.drawable.buisness);
         eventsList.add(movie);
 
-        movie = new Events_list("Aliens", "Science Fiction", "1986");
+        movie = new Events_list("Aliens", "Science Fiction", "1986", R.drawable.tech);
         eventsList.add(movie);
 
         mAdapter.notifyDataSetChanged();

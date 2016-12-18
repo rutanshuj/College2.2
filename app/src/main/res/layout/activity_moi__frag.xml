@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/profile_background"
+        tools:context="com.example.admin.college20.Moi_Frag">
+
+
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/profile_image"
+        android:id="@+id/profile_userImg"
+        android:contentDescription="Image"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Rutanshu Jhaveri"
+        android:id="@+id/profile_name"
+        android:layout_alignTop="@+id/profile_userImg"
+        android:layout_toRightOf="@+id/profile_userImg"
+        android:layout_toEndOf="@+id/profile_userImg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="\@rut_0_1"
+        android:id="@+id/profile_username"
+        android:layout_below="@+id/profile_name"
+        android:layout_alignLeft="@+id/profile_name"
+        android:layout_alignStart="@+id/profile_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black"
+        android:text="@string/desc"
+        android:id="@+id/profile_desc"
+        android:layout_toRightOf="@+id/profile_userImg"
+        android:layout_below="@+id/profile_username"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/profile_interests"
+        android:id="@+id/profile_i"
+        android:layout_below="@+id/profile_userImg"
+        android:layout_alignLeft="@+id/profile_userImg"
+        android:layout_alignStart="@+id/profile_userImg"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/profile_interests"
+        android:layout_below="@+id/profile_i"
+        android:layout_alignLeft="@+id/profile_i"
+        android:layout_alignStart="@+id/profile_i" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/profile_college"
+        android:id="@+id/profile_c"
+        android:layout_below="@+id/profile_interests"
+        android:layout_alignLeft="@+id/profile_interests"
+        android:layout_alignStart="@+id/profile_interests" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/profile_college"
+        android:layout_below="@+id/profile_c"
+        android:layout_alignLeft="@+id/profile_c"
+        android:layout_alignStart="@+id/profile_c" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/profile_facebook"
+        android:id="@+id/profile_f"
+        android:layout_below="@+id/profile_college"
+        android:layout_alignLeft="@+id/profile_college"
+        android:layout_alignStart="@+id/profile_college" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/profile_facebook"
+        android:layout_below="@+id/profile_f"
+        android:layout_alignLeft="@+id/profile_f"
+        android:layout_alignStart="@+id/profile_f" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/profile_email"
+        android:id="@+id/profile_e"
+        android:layout_below="@+id/profile_facebook"
+        android:layout_alignLeft="@+id/profile_facebook"
+        android:layout_alignStart="@+id/profile_facebook" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/profile_email"
+        android:layout_below="@+id/profile_e"
+        android:layout_alignLeft="@+id/profile_e"
+        android:layout_alignStart="@+id/profile_e" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/profile_location"
+        android:id="@+id/profile_l"
+        android:layout_below="@+id/profile_email"
+        android:layout_alignLeft="@+id/profile_email"
+        android:layout_alignStart="@+id/profile_email" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/profile_location"
+        android:layout_below="@+id/profile_l"
+        android:layout_alignLeft="@+id/profile_l"
+        android:layout_alignStart="@+id/profile_l" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/profile_skills"
+        android:id="@+id/profile_s"
+        android:layout_below="@+id/profile_location"
+        android:layout_alignLeft="@+id/profile_location"
+        android:layout_alignStart="@+id/profile_location" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/profile_skills"
+        android:layout_below="@+id/profile_s"
+        android:layout_alignLeft="@+id/profile_s"
+        android:layout_alignStart="@+id/profile_s" />
+
+
+</RelativeLayout>
+</ScrollView>

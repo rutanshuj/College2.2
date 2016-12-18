@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class HomeFragment extends Fragment {
+public class  HomeFragment extends Fragment {
     View homeView;
 
 
@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
         homeView = inflater.inflate(R.layout.activity_home_fragment, null);
 
         Categories_Frag categoriesFrag = new Categories_Frag();
-        RecyclerView_Frag recyclerView_frag = new RecyclerView_Frag();
+
 
 
         FragmentManager fragmentManager = getFragmentManager();

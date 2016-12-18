@@ -40,6 +40,7 @@ public class MainPage1 extends AppCompatActivity {
         mp1FragmentManager = getSupportFragmentManager();
         mp1FragmentTransaction = mp1FragmentManager.beginTransaction();
         mp1FragmentTransaction.replace(R.id.containerToBeFilled, new mp1_SwipeTab()).commit();
+        
 
         /** After getting the particular fragment you can now set your Navigation View Adapter
          * and Listener
@@ -53,6 +54,12 @@ public class MainPage1 extends AppCompatActivity {
                 if (item.getItemId() == R.id.Home){
                     FragmentTransaction fragmentTransaction = mp1FragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.containerToBeFilled, new mp1_SwipeTab()).commit();
+                }
+                if(item.getItemId() == R.id.OP);{
+                    Intent i = new Intent();
+                    i.setClass(getApplicationContext(), uMainPage.class);
+                    startActivity(i);
+
                 }
 
             return false;
@@ -70,7 +77,7 @@ public class MainPage1 extends AppCompatActivity {
         mp1_toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SearchUniActivity.class);
+                Intent i = new Intent();
                 i.setClass(getApplicationContext(), SearchUniActivity.class);
                 startActivity(i);
             }

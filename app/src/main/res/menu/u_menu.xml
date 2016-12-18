@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/Home"
+        android:id="@+id/u_home"
+
+        />
+    <item
+        android:title="@string/Sales"
+        android:id="@+id/u_sales"
+        />
+    <item
+        android:title="@string/Customers"
+        android:id="@+id/u_customers"
+        />
+    <item
+        android:title="@string/Integrations"
+        android:id="@+id/u_integrations"
+        />
+    <item
+        android:title="@string/Feedback"
+        android:id="@+id/u_feedback"
+        />
+</menu>

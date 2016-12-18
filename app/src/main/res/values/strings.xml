@@ -4,6 +4,10 @@
     <string name="ClickHere"><u>"Click here to Log In"</u></string>
     <string name="title_activity_main_page1">MainPage1</string>
 
+    <string name="desc">Work and Play hard. Be foolish and make mistakes. Everyday is a chance
+                        to learn.
+    </string>
+
     <!-- Categories Strings -->
     <string name="arts">Arts &amp; Sciences</string>
     <string name="arch">Architecture</string>
@@ -26,30 +30,46 @@
     <string name="title_activity_featured_tab">featured_tab</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="Home">Home</string>
-    
+
     <string-array name="array_uni">
-    <item>Acharya N.G. Ranga Agricultural University</item>
-    <item>Acharya Nagarjuna University</item>
-    <item>Adikavi Nannaya University</item>
-    <item>Ahmedabad University</item>
-    <item>All India Institute of Medical Sciences Patna</item>
-    <item>Bhupendra Narayan Mandal University</item>
-    <item>Birsa Agricultural University</item>
-    <item>BML Munjal University</item>
-    <item>C. U. Shah University</item>
-    <item>Career Point University</item>
-    <item>Central University of Gujarat</item>
-    <item>Dr. D.Y. Patil Vidyapeeth</item>
-    <item>Himachal Pradesh Technical University</item>
-    <item>ICFAI University, Mizoram</item>
-    <item>ICFAI University, Sikkim</item>
-    <item>IFHE Hyderabad</item>
-    <item>Indian Institute of Technology Kanpur</item>
-    <item>Indian Institute of Technology Kharagpur</item>
-    <item>Indian Institute of Technology Madras</item>
-    <item>Indian Institute of Technology Roorkee</item>
-    <item>Islamic University of Science and Technology</item>
-    <item>Manipal Institute Of Technology</item>
-    <item>Vellore Institute of Technology</item>
-</string-array>
+        <item>Acharya N.G. Ranga Agricultural University</item>
+        <item>Acharya Nagarjuna University</item>
+        <item>Adikavi Nannaya University</item>
+        <item>Ahmedabad University</item>
+        <item>All India Institute of Medical Sciences Patna</item>
+        <item>Bhupendra Narayan Mandal University</item>
+        <item>Birsa Agricultural University</item>
+        <item>BML Munjal University</item>
+        <item>C. U. Shah University</item>
+        <item>Career Point University</item>
+        <item>Central University of Gujarat</item>
+        <item>Dr. D.Y. Patil Vidyapeeth</item>
+        <item>Himachal Pradesh Technical University</item>
+        <item>ICFAI University, Mizoram</item>
+        <item>ICFAI University, Sikkim</item>
+        <item>IFHE Hyderabad</item>
+        <item>Indian Institute of Technology Kanpur</item>
+        <item>Indian Institute of Technology Kharagpur</item>
+        <item>Indian Institute of Technology Madras</item>
+        <item>Indian Institute of Technology Roorkee</item>
+        <item>Islamic University of Science and Technology</item>
+        <item>Manipal Institute Of Technology</item>
+        <item>Vellore Institute of Technology</item>
+    </string-array>
+
+    <!-- Uploader Strings-->
+    <string name="Sales">Sales</string>
+    <string name="Customers">Customers</string>
+    <string name="Integrations">Integrations</string>
+    <string name="Feedback">Feedback</string>
+    <string name="Organiser">Organiser</string>
+
+    <!-- Profile Strings -->
+    <string name="profile_interests">Interests</string>
+    <string name = "profile_college">College</string>
+    <string name="profile_facebook">FaceBook</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_location">Location</string>
+    <string name="profile_skills">Skills</string>
+
 </resources>

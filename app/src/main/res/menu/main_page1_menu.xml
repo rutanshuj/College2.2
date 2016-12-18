@@ -3,8 +3,8 @@
     <item android:id="@+id/Home"
         android:title="@string/Home"
         />
-    <item android:id="@+id/MenuListItem2"
-        android:title="MenuItem2"
+    <item android:id="@+id/OP"
+        android:title="Oraganizer's Page"
         />
     <item android:id="@+id/MenuListItem3"
         android:title="MenuItem3"
