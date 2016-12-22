@@ -14,8 +14,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MainPage1 extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     NavigationView mp1NavigationView;
     DrawerLayout mp1NavigationLayout;
     FragmentManager mp1FragmentManager;
@@ -27,6 +33,18 @@ public class MainPage1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page1);
 
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser() == null){
+                    //if returns null then user is not logged in
+                    Intent loginIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(loginIntent);
+                }
+            }
+        };
         mp1_toolbar = (Toolbar) findViewById(R.id.toolbar_mp1);
         mp1NavigationLayout = (DrawerLayout) findViewById(R.id.mainPage1DrawerLayout);
         mp1NavigationView = (NavigationView) findViewById(R.id.mainPage1DrawerView);
@@ -85,5 +103,9 @@ public class MainPage1 extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 }
