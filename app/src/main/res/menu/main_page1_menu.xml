@@ -6,8 +6,8 @@
     <item android:id="@+id/OP"
         android:title="Oraganizer's Page"
         />
-    <item android:id="@+id/MenuListItem3"
-        android:title="MenuItem3"
+    <item android:id="@+id/action_logout"
+        android:title="Logout"
         />
     <item android:id="@+id/MenuItem4"
         android:title="MenuItem4"

@@ -26,11 +26,12 @@ public class uMainPage extends AppCompatActivity {
         u_drawerLayout = (DrawerLayout) findViewById(R.id.u_DrawerLayout);
         u_navigationView = (NavigationView) findViewById(R.id.u_NavView);
 
-
+        CreateEvent1 createEvent1 = new CreateEvent1();
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.u_container, new RecyclerView_Frag()).commit();
+        fragmentTransaction.replace(R.id.u_container, createEvent1);
+        fragmentTransaction.commit();
 
         u_navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

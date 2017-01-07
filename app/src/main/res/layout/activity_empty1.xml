@@ -4,12 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/emptyContainer"
-    tools:context="com.example.admin.college20.EmptyActivity1">
-
-    <fragment
-        android:layout_width="match_parent"
-        android:name="com.example.admin.college20.RecyclerView_Frag"
-        android:layout_height="match_parent"
-        tools:layout="@layout/recycler_view" />
+    tools:context=".CreateEvent1"
+    android:background="@drawable/create_event">
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:id="@+id/getStarted"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>
