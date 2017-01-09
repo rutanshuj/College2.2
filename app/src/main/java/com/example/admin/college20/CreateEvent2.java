@@ -31,9 +31,7 @@ public class CreateEvent2 extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 if(event_title.length() == 0 &&
-                event_location.length() == 0 &&
-                event_title.length() == 0 ){
+                 if(event_title !=null && event_location !=null && event_category!=null ){
                 Intent i = new Intent(CreateEvent2.this, CreateEvent3.class);
                 i.putExtra("title", event_title);
                 i.putExtra("location", event_location);

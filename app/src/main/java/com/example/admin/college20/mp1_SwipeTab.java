@@ -1,5 +1,6 @@
 package com.example.admin.college20;
 
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -43,8 +44,6 @@ public class mp1_SwipeTab extends Fragment {
          */
 
         mp1_TabLayout.setupWithViewPager(mp1_ViewPager);
-
-
         return x;
     }
 
@@ -85,6 +84,16 @@ public class mp1_SwipeTab extends Fragment {
             }
             return null;
         }
+
+         public int getDrawable(int position){
+             switch(position){
+                 case 0:
+                     return R.drawable.
+
+             }
+             return null;
+         }
+
     }
 }
 
