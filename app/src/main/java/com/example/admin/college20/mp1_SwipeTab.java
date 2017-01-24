@@ -14,10 +14,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ToxicBakery.viewpager.transforms.CubeOutTransformer;
+import com.ToxicBakery.viewpager.transforms.DepthPageTransformer;
+import com.ToxicBakery.viewpager.transforms.RotateDownTransformer;
+
 public class mp1_SwipeTab extends Fragment {
     public static ViewPager mp1_ViewPager;
     public static TabLayout mp1_TabLayout;
     public static int swipe_items = 4;
+
+    final int[] ICONS = new int[]{
+            R.drawable.mein,
+            R.drawable.home_white,
+            R.drawable.news_white,
+            R.drawable.forum_white
+    };
 
     @Nullable
     @Override
@@ -44,6 +55,13 @@ public class mp1_SwipeTab extends Fragment {
          */
 
         mp1_TabLayout.setupWithViewPager(mp1_ViewPager);
+
+        mp1_TabLayout.getTabAt(0).setIcon(ICONS[0]);
+        mp1_TabLayout.getTabAt(1).setIcon(ICONS[1]);
+        mp1_TabLayout.getTabAt(2).setIcon(ICONS[2]);
+        mp1_TabLayout.getTabAt(3).setIcon(ICONS[3]);
+
+        mp1_ViewPager.setPageTransformer(true, new CubeOutTransformer());
         return x;
     }
 
@@ -84,15 +102,6 @@ public class mp1_SwipeTab extends Fragment {
             }
             return null;
         }
-
-         public int getDrawable(int position){
-             switch(position){
-                 case 0:
-                     return R.drawable.
-
-             }
-             return null;
-         }
 
     }
 }

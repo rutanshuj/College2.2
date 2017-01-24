@@ -37,6 +37,10 @@ public class MainPage1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page1);
+        if(SaveSharedPreference.getUserName(MainPage1.this).length()!=0){
+            Intent intent = new Intent(MainPage1.this, MainActivity.class);
+            startActivity(intent);
+        }
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {

@@ -2,8 +2,11 @@ package com.example.admin.college20;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabaseUsers;
+
 
 
     @Override
@@ -66,9 +70,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkLogin();
-            }
+                }
         });
     }
+
 
     private void checkLogin() {
         String Email = mEmail.getText().toString().trim();
@@ -94,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(MainActivity.this, "Please enter details", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -104,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(user_id)){
-
                     Intent i = new Intent(MainActivity.this, MainPage1.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
+
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Hey bro, make an account", Toast.LENGTH_LONG).show();

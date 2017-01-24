@@ -39,7 +39,7 @@ public class CreateEvent3 extends AppCompatActivity {
         mEventWebLink = (EditText) findViewById(R.id.event_weblink);
         upload_image_button = (Button) findViewById(R.id.upload_image_button);
         done_button = (Button) findViewById(R.id.done_button);
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Event");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Event1");
         progressDialog = new ProgressDialog(this);
 
         event_desc = mEventDesc.getText().toString().trim();
@@ -57,27 +57,27 @@ public class CreateEvent3 extends AppCompatActivity {
                 startActivityForResult(intent, GALLERY_INTENT);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         done_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(event_desc.length()==0 &&
-                        event_weblink.length() == 0 &&
-                        event_fb_url.length() == 0
-                        ){
+
                     startPosting();
 
                     Intent i = new Intent(CreateEvent3.this, MainPage1.class);
                     startActivity(i);
                 }
-            }
+
         });
-
-
-
     }
 
     private void startPosting() {
+
 
         progressDialog.setMessage("Uploading");
         progressDialog.show();
@@ -86,25 +86,14 @@ public class CreateEvent3 extends AppCompatActivity {
         final String event_location = bundle.getString("location");
         final String event_category = bundle.getString("category");
 
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        DatabaseReference databaseReference = mDatabaseReference.push();
+        databaseReference.child("Event Title").setValue(event_title);
+        databaseReference.child("Event Location").setValue(event_location);
+        databaseReference.child("Event Category").setValue(event_category);
+        databaseReference.child("Event Description").setValue(event_desc);
+        databaseReference.child("Event Weblink").setValue(event_weblink);
+        databaseReference.child("Event FB").child(event_fb_url);
 
-                DatabaseReference databaseReference = mDatabaseReference.push();
-                databaseReference.child("Event Title").setValue(event_title);
-                databaseReference.child("Event Location").setValue(event_location);
-                databaseReference.child("Event Category").setValue(event_category);
-                databaseReference.child("Event Description").setValue(event_desc);
-                databaseReference.child("Event Weblink").setValue(event_weblink);
-                databaseReference.child("Event FB").child(event_fb_url);
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
 }
