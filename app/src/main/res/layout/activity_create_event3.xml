@@ -55,4 +55,17 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp" />
 
+    <TextView
+        android:text="Hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/event_desc"
+        android:layout_alignEnd="@+id/event_desc"
+        android:layout_marginRight="49dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginTop="33dp"
+        android:id="@+id/hello" />
+
+
 </RelativeLayout>

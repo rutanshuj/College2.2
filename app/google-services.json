@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "373646382571",
-    "firebase_url": "https://college2-ac4f7.firebaseio.com",
-    "project_id": "college2-ac4f7",
-    "storage_bucket": "college2-ac4f7.appspot.com"
+    "project_number": "104940694704",
+    "firebase_url": "https://college1-a6e9b.firebaseio.com",
+    "project_id": "college1-a6e9b",
+    "storage_bucket": "college1-a6e9b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:373646382571:android:96763374ded6529f",
+        "mobilesdk_app_id": "1:104940694704:android:96763374ded6529f",
         "android_client_info": {
           "package_name": "com.example.admin.college20"
         }
       },
       "oauth_client": [
         {
-          "client_id": "373646382571-ca5ktmu46b2cebt69864b7aegt3fu24q.apps.googleusercontent.com",
+          "client_id": "104940694704-3rvmfkutpt6s6d3rh2k7mq0ebrirvm09.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBRC5-PZc385nf6ebwHv7hjMzojc1IWzTM"
+          "current_key": "AIzaSyANKFxQpPDb7_HXvnf3Vo5dp3zTQe3gfyY"
         }
       ],
       "services": {

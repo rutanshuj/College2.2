@@ -16,20 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.firebase.client.Firebase;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-
 public class MainPage1 extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    //private FirebaseAuth mAuth;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
     NavigationView mp1NavigationView;
     DrawerLayout mp1NavigationLayout;
     FragmentManager mp1FragmentManager;
-    private DatabaseReference mDatabaseUsers;
+   // private DatabaseReference mDatabaseUsers;
     FragmentTransaction mp1FragmentTransaction;
     Toolbar mp1_toolbar;
 
@@ -42,9 +36,9 @@ public class MainPage1 extends AppCompatActivity {
             startActivity(intent);
         }
 
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
+        /** mAuth = FirebaseAuth.getInstance();
+        //mAuthListener = new FirebaseAuth.AuthStateListener() {
+            //@Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() == null) {
                     //if returns null then user is not logged in
@@ -56,7 +50,7 @@ public class MainPage1 extends AppCompatActivity {
         };
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
-        mDatabaseUsers.keepSynced(true);
+        mDatabaseUsers.keepSynced(true); **/
         mp1_toolbar = (Toolbar) findViewById(R.id.toolbar_mp1);
         mp1NavigationLayout = (DrawerLayout) findViewById(R.id.mainPage1DrawerLayout);
         mp1NavigationView = (NavigationView) findViewById(R.id.mainPage1DrawerView);
@@ -97,10 +91,10 @@ public class MainPage1 extends AppCompatActivity {
                     i.setClass(getApplicationContext(), uMainPage.class);
                     startActivity(i);
                 }
-                if( item.getItemId() == R.id.action_logout){
+                //if( item.getItemId() == R.id.action_logout){
 
-                    logout();
-                }
+                 //   logout();
+                //}
                 return false;
             }
         });
@@ -124,7 +118,7 @@ public class MainPage1 extends AppCompatActivity {
 
     }
 
-    private void logout()
+    /**private void logout()
     {
         mAuth.signOut();
     }
@@ -133,5 +127,5 @@ public class MainPage1 extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-    }
+    }**/
 }

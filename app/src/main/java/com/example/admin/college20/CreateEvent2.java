@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class CreateEvent2 extends AppCompatActivity {
 
-    private EditText mEventTitle, mEventLocation, mEventCategory;
+    private EditText mEventTitle, mEventLocation, mEventCategory, mContact;
     private Button mNextButton;
 
     @Override
@@ -22,25 +22,31 @@ public class CreateEvent2 extends AppCompatActivity {
         mEventTitle = (EditText) findViewById(R.id.event_title);
         mEventLocation = (EditText) findViewById(R.id.event_location);
         mEventCategory = (EditText) findViewById(R.id.event_category);
+        mContact = (EditText) findViewById(R.id.contact_info);
         mNextButton = (Button) findViewById(R.id.nextButton);
 
         final String event_title = mEventTitle.getText().toString().trim();
         final String event_location = mEventLocation.getText().toString().trim();
         final String event_category = mEventCategory.getText().toString().trim();
+        final String contact = mContact.getText().toString().trim();
 
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 if(event_title !=null && event_location !=null && event_category!=null ){
-                Intent i = new Intent(CreateEvent2.this, CreateEvent3.class);
-                i.putExtra("title", event_title);
-                i.putExtra("location", event_location);
-                i.putExtra("category", event_category);
-                startActivity(i);
-            }
-        }
+                /**if (!TextUtils.isEmpty(event_title)
+                        && !TextUtils.isEmpty(event_location)
+                        && !TextUtils.isEmpty(event_category)
+                        && !TextUtils.isEmpty(contact)) {**/
+
+                    Intent i = new Intent(CreateEvent2.this, CreateEvent3.class);
+                    i.putExtra("title", event_title);
+                    i.putExtra("location", event_location);
+                    i.putExtra("category", event_category);
+                    i.putExtra("contact", contact);
+                    startActivity(i);
+                }
+
 
         });
-
     }
 }

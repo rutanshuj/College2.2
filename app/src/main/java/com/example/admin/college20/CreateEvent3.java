@@ -3,30 +3,40 @@ package com.example.admin.college20;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.firebase.client.Firebase;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class CreateEvent3 extends AppCompatActivity {
     private EditText mEventDesc, mEventFBUrl, mEventWebLink;
+    private TextView hello;
     private Button upload_image_button, done_button;
-    private static final int GALLERY_INTENT = 1;
-    private String event_desc, event_weblink, event_fb_url;
+
+
     private ProgressDialog progressDialog;
+    private static final int GALLERY_INTENT = 1;
+    private Uri imageUri = null;
 
-
-    DatabaseReference mDatabaseReference;
+    private DatabaseReference mDatabaseReference;
+    private StorageReference mStorageRef;
 
 
     @Override
@@ -39,12 +49,15 @@ public class CreateEvent3 extends AppCompatActivity {
         mEventWebLink = (EditText) findViewById(R.id.event_weblink);
         upload_image_button = (Button) findViewById(R.id.upload_image_button);
         done_button = (Button) findViewById(R.id.done_button);
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Event1");
-        progressDialog = new ProgressDialog(this);
+        hello = (TextView) findViewById(R.id.hello);
 
-        event_desc = mEventDesc.getText().toString().trim();
-        event_weblink = mEventWebLink.getText().toString().trim();
-        event_fb_url = mEventFBUrl.getText().toString().trim();
+        mDatabaseReference = FirebaseDatabase.
+                getInstance().
+                getReference().
+                child("Event");
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        progressDialog = new ProgressDialog(this);
 
         upload_image_button.setVisibility(View.VISIBLE);
         upload_image_button.setBackgroundColor(Color.TRANSPARENT);
@@ -57,43 +70,81 @@ public class CreateEvent3 extends AppCompatActivity {
                 startActivityForResult(intent, GALLERY_INTENT);
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
         done_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    startPosting();
-
-                    Intent i = new Intent(CreateEvent3.this, MainPage1.class);
-                    startActivity(i);
-                }
-
+                startPosting();
+                Toast.makeText(CreateEvent3.this, "Button Selected", Toast.LENGTH_SHORT).show();
+            }
         });
+
     }
 
-    private void startPosting() {
+    public void startPosting() {
 
+        progressDialog.setMessage("Uploading the Data");
 
-        progressDialog.setMessage("Uploading");
-        progressDialog.show();
-        Bundle bundle = getIntent().getExtras();
-        final String event_title = bundle.getString("title");
-        final String event_location = bundle.getString("location");
-        final String event_category = bundle.getString("category");
+        Intent in = getIntent();
+        Bundle bundle = in.getExtras();
+        final String event_title = getIntent().getStringExtra("title");
+        final String event_location = getIntent().getStringExtra("location");
+        final String event_category = getIntent().getStringExtra("category");
+        final String contact = getIntent().getStringExtra("contact");
 
-        DatabaseReference databaseReference = mDatabaseReference.push();
-        databaseReference.child("Event Title").setValue(event_title);
-        databaseReference.child("Event Location").setValue(event_location);
-        databaseReference.child("Event Category").setValue(event_category);
-        databaseReference.child("Event Description").setValue(event_desc);
-        databaseReference.child("Event Weblink").setValue(event_weblink);
-        databaseReference.child("Event FB").child(event_fb_url);
+        final String event_desc = mEventDesc.getText().toString().trim();
+        final String event_weblink = mEventWebLink.getText().toString().trim();
+        final String event_fb_url = mEventFBUrl.getText().toString().trim();
 
+        Log.d("Event Tile", event_title);
+        Log.d("Event Location", event_location);
+        Log.d("Event Category", event_category);
+        hello.setText(event_title);
+
+        if (!TextUtils.isEmpty(event_desc)
+                && !TextUtils.isEmpty(event_weblink)
+                && !TextUtils.isEmpty(event_fb_url)
+                && imageUri != null) {
+            progressDialog.show();
+
+            StorageReference filepath = mStorageRef.child("Images").child(imageUri.getLastPathSegment());
+
+            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Uri uri = taskSnapshot.getDownloadUrl();
+
+                    DatabaseReference newEvent = mDatabaseReference.push();
+                    newEvent.child("title").setValue(event_title);
+                    newEvent.child("location").setValue(event_location);
+                    newEvent.child("category").setValue(event_category);
+                    newEvent.child("contact").setValue(contact);
+                    newEvent.child("desc").setValue(event_desc);
+                    newEvent.child("web").setValue(event_weblink);
+                    newEvent.child("fb").setValue(event_fb_url);
+                    newEvent.child("imageUrl").setValue(uri.toString());
+
+                    progressDialog.dismiss();
+                    startActivity(new Intent(CreateEvent3.this, MainPage1.class));
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(CreateEvent3.this, "Upload Failed :(", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else{
+            Toast.makeText(this, "Fill in the details", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
+            imageUri = data.getData();
+        }
     }
 
 }
+
