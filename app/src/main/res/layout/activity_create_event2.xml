@@ -4,57 +4,140 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.college20.CreateEvent2"
-    android:background="@drawable/create_event_1">
+    android:background="@drawable/create1">
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="Event Title"
-        android:layout_marginTop="90dp"
-        android:id="@+id/event_title"
-        android:inputType="textMultiLine"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fromDate"
+        android:text="From:"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/event_location"
-        android:layout_alignEnd="@+id/event_location" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="76dp" />
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="Event Location"
-        android:id="@+id/event_location"
-        android:inputType="textMultiLine"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/contact_info"
-        android:layout_alignStart="@+id/contact_info" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toDate"
+        android:text="To:"
+        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp"
+        android:layout_alignBaseline="@+id/fromDate"
+        android:layout_alignBottom="@+id/fromDate"
+        android:layout_toRightOf="@+id/startDate"
+        android:layout_toEndOf="@+id/startDate" />
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="Event Category"
-        android:id="@+id/event_category"
-        android:inputType="textMultiLine"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/event_location"
-        android:layout_alignLeft="@+id/contact_info"
-        android:layout_alignStart="@+id/contact_info" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="From:"
+        android:id="@+id/fromTime"
+        android:layout_below="@+id/startDate"
+        android:layout_alignLeft="@+id/startDate"
+        android:layout_alignStart="@+id/startDate"
+        android:layout_marginTop="63dp" />
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="Contact Number"
-        android:id="@+id/contact_info"
-        android:inputType="textMultiLine"
-        android:layout_above="@+id/nextButton"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toTime"
+        android:text="To:"
+        android:layout_marginRight="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_above="@+id/endTime"
+        android:layout_alignRight="@+id/toDate"
+        android:layout_alignEnd="@+id/toDate" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/endDate"
+        android:hint="Date"
+        android:layout_alignBottom="@+id/startDate"
+        android:layout_alignLeft="@+id/toDate"
+        android:layout_alignStart="@+id/toDate" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:id="@+id/toDateBttn"
+        android:layout_below="@+id/toDate"
+        android:layout_alignLeft="@+id/toDate"
+        android:layout_alignStart="@+id/toDate" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:hint="Date"
+        android:id="@+id/startDate"
+        android:layout_alignBaseline="@+id/toDateBttn"
+        android:layout_alignBottom="@+id/toDateBttn"
+        android:layout_alignLeft="@+id/fromDate"
+        android:layout_alignStart="@+id/fromDate" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:id="@+id/fromDateBttn"
+        android:clickable="true"
+        android:layout_alignBaseline="@+id/startDate"
+        android:layout_alignBottom="@+id/startDate"
+        android:layout_alignLeft="@+id/fromDate"
+        android:layout_alignStart="@+id/fromDate" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/endTime"
+        android:hint="Time"
+        android:layout_below="@+id/fromTime"
+        android:layout_alignLeft="@+id/fromTime"
+        android:layout_alignStart="@+id/fromTime"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:id="@+id/fromTimeBttn"
+        android:layout_below="@+id/fromTime"
+        android:layout_alignLeft="@+id/endTime"
+        android:layout_alignStart="@+id/endTime" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:hint="Time"
+        android:id="@+id/startTime"
+        android:layout_alignBaseline="@+id/fromTimeBttn"
+        android:layout_alignBottom="@+id/fromTimeBttn"
+        android:layout_alignLeft="@+id/toTime"
+        android:layout_alignStart="@+id/toTime" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="New Button"
-        android:id="@+id/nextButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp" />
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/nextButton1"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/fromTimeBttn"
+        android:layout_toRightOf="@+id/fromTime"
+        android:layout_toEndOf="@+id/fromTime"
+        android:layout_marginLeft="99dp"
+        android:layout_marginStart="99dp" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:id="@+id/toTimeBttn"
+        android:layout_above="@+id/nextButton1"
+        android:layout_alignLeft="@+id/toTime"
+        android:layout_alignStart="@+id/toTime" />
 
 </RelativeLayout>

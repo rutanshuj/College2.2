@@ -72,4 +72,17 @@
     <string name="profile_location">Location</string>
     <string name="profile_skills">Skills</string>
 
+    <!--Category Strings Spinner -->
+    <string name="cat_prompt">Choose a category</string>
+
+    <string-array name="Categories">
+        <item>Architecture</item>
+        <item>Art</item>
+        <item>Business</item>
+        <item>Finance</item>
+        <item>Literature</item>
+        <item>Science</item>
+        <item>Technology</item>
+    </string-array>
+
 </resources>

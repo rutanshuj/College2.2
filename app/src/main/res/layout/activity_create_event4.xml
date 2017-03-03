@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.admin.college20.CreateEvent4"
+    android:background="@drawable/create3">
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_desc"
+        android:layout_marginTop="36dp"
+        android:inputType="textMultiLine"
+        android:hint="Enter short description here..."
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/upload_image_button"
+        android:layout_alignStart="@+id/upload_image_button" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/doneButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Upload Image"
+        android:id="@+id/upload_image_button"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/event_desc"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/r1"
+        android:id="@+id/eventImage"
+        android:layout_above="@+id/doneButton"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

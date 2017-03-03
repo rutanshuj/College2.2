@@ -9,7 +9,7 @@
     <item android:id="@+id/action_logout"
         android:title="Logout"
         />
-    <item android:id="@+id/MenuItem4"
-        android:title="MenuItem4"
+    <item android:id="@+id/event_list"
+        android:title="Event List"
         />
 </menu>

@@ -7,9 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-
-
 
 public class Categories_Frag extends Fragment implements View.OnClickListener {
     ImageView arch, art, business, literature, science, tech;
@@ -18,7 +17,7 @@ public class Categories_Frag extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.categories2, container, false);
-        arch = (ImageView) view.findViewById(R.id.arch);
+        arch = (ImageButton) view.findViewById(R.id.arch);
         art = (ImageView) view.findViewById(R.id.artImg);
         business = (ImageView) view.findViewById(R.id.businessImg);
         literature = (ImageView) view.findViewById(R.id.literatureImg);
@@ -26,15 +25,12 @@ public class Categories_Frag extends Fragment implements View.OnClickListener {
         tech = (ImageView) view.findViewById(R.id.techImg);
 
         return view;
-
     }
-
     public void onClick(View view){
-        Intent i = new Intent();
-        i.setClass(getActivity().getApplicationContext(), EventView.class);
+        //Toast.makeText(getContext(), "Button Clicked !!", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getActivity(), EventView.class);
 
         switch(view.getId()) {
-
             case R.id.arch:
                 String arch = "Architecture";
                 i.putExtra("Arch", arch);
@@ -59,8 +55,6 @@ public class Categories_Frag extends Fragment implements View.OnClickListener {
                 String tech = "Tech";
                 i.putExtra("Technology", tech);
         }
-
         startActivity(i);
     }
-
 }
