@@ -26,7 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class CreateEvent4 extends AppCompatActivity {
-    private EditText mEventDesc, mEventFBUrl, mEventWebLink;
+    private EditText mEventDesc;
 
     private Button upload_image_button, doneButton;
 
@@ -61,8 +61,6 @@ public class CreateEvent4 extends AppCompatActivity {
                 startActivityForResult(intent, GALLERY_INTENT);
             }
         });
-
-
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,9 +69,7 @@ public class CreateEvent4 extends AppCompatActivity {
                 startPosting();
             }
         });
-
     }
-
     public void startPosting() {
 
         Intent in = getIntent();
@@ -82,9 +78,9 @@ public class CreateEvent4 extends AppCompatActivity {
         final String weblink = in.getStringExtra("weblink");
 
 
-        SharedPreferences preferences = getSharedPreferences("preference", Context.MODE_WORLD_READABLE);
+        SharedPreferences preferences = getSharedPreferences("preference", Context.MODE_PRIVATE);
         final String event_title = preferences.getString("title", "");
-        final String event_category = preferences.getString("category","");
+        final String event_category = preferences.getString("event_cat","");
 
         final String event_contact = preferences.getString("contact","");
         final String club = preferences.getString("club", "");

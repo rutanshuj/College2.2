@@ -40,7 +40,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".CreateEvent"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".uMainPage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -60,8 +60,13 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".EventView" />
-        <activity android:name=".CreateEvent3" />
-        <activity android:name=".CreateEvent1"></activity>
+        <activity
+            android:name=".CreateEvent3"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".CreateEvent1"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity android:name=".UnderConstruction"></activity>
     </application>
 
 </manifest>

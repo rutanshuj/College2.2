@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.admin.college20.CreateEvent1"
     android:background="@drawable/create0">
-
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
@@ -25,10 +24,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/clubName"
+        android:id="@+id/category"
         android:textSize="15sp"
         android:textColor="@color/black"
-        android:text="Chapter/Club Name"
+        android:text="Category"
         android:layout_marginTop="32dp"
         android:layout_below="@+id/event_title"
         android:layout_alignLeft="@+id/spinnerCategory"
@@ -37,21 +36,13 @@
     <Spinner
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:background="@drawable/r1"
         android:id="@+id/spinnerCategory"
         android:prompt="@string/cat_prompt"
         android:entries="@array/Categories"
-        android:layout_below="@+id/clubName"
+        android:layout_below="@+id/category"
         android:layout_alignLeft="@+id/event_title"
         android:layout_alignStart="@+id/event_title" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:layout_marginTop="63dp"
-        android:id="@+id/nextButton0"
-        android:layout_below="@+id/contact_info"
-        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="300dp"
@@ -60,18 +51,27 @@
         android:id="@+id/contact_info"
         android:inputType="textMultiLine"
         android:layout_marginTop="31dp"
-        android:layout_below="@+id/event_category"
+        android:layout_below="@+id/event_club"
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="Event Category"
-        android:id="@+id/event_category"
+        android:hint="Club Name"
+        android:id="@+id/event_club"
         android:inputType="textMultiLine"
         android:layout_marginTop="32dp"
         android:layout_below="@+id/spinnerCategory"
         android:layout_alignLeft="@+id/contact_info"
         android:layout_alignStart="@+id/contact_info" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_marginTop="51dp"
+        android:id="@+id/nextButton0"
+        android:layout_below="@+id/contact_info"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,6 +34,9 @@ public class CreateEvent3 extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Event");
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
+
+        final String web_link = mWebLink.getText().toString().trim();
+
         nextButton2 = (Button) findViewById(R.id.nextButton2);
 
         nextButton2.setOnClickListener(new View.OnClickListener() {
@@ -41,17 +46,20 @@ public class CreateEvent3 extends AppCompatActivity {
                 if(!TextUtils.isEmpty(mEventLocation.getText().toString())
                         && !TextUtils.isEmpty(mFBLink.getText().toString())
                         && !TextUtils.isEmpty(mWebLink.getText().toString())){
+                       // &&  URLUtil.isHttpUrl(web_link)|| URLUtil.isHttpUrl(web_link) ){
 
                 Intent i = new Intent(CreateEvent3.this, CreateEvent4.class);
                 final String event_location = mEventLocation.getText().toString().trim();
                 final String FbLink = mEventLocation.getText().toString().trim();
                 final String WebLink = mWebLink.getText().toString().trim();
-
                 i.putExtra("location", event_location);
                 i.putExtra("fblink", FbLink);
                 i.putExtra("weblink", WebLink);
 
                 startActivity(i);
+                }
+                else{
+                    Toast.makeText(CreateEvent3.this, "Please enter valid details", Toast.LENGTH_SHORT).show();
                 }
             }
         });

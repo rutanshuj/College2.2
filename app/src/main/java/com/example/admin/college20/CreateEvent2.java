@@ -10,13 +10,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -33,8 +31,8 @@ public class CreateEvent2 extends Activity implements View.OnClickListener {
 
         fromDateBttn = (Button) findViewById(R.id.fromDateBttn);
         toDateBttn = (Button) findViewById(R.id.toDateBttn);
-        fromTimeBttn = (Button) findViewById(R.id.fromTimeBttn);
-        toTimeBttn = (Button) findViewById(R.id.toTimeBttn);
+        fromTimeBttn = (Button) findViewById(R.id.toTimeBttn);
+        toTimeBttn = (Button) findViewById(R.id.fromTimeBttn);
         nextBttn = (Button) findViewById(R.id.nextButton1);
 
         //TextView
@@ -88,7 +86,7 @@ public class CreateEvent2 extends Activity implements View.OnClickListener {
 
                 datePickerDialog.show();
                 break;
-            case R.id.fromTimeBttn:
+            case R.id.toTimeBttn:
                 final Calendar t = Calendar.getInstance();
 
                 mHour = t.get(Calendar.HOUR);
@@ -100,13 +98,13 @@ public class CreateEvent2 extends Activity implements View.OnClickListener {
                         int hour = hourOfDay % 12;
                         if (hour == 0)
                             hour = 12;
-                        startTime.setText(String.format("%02d:%02d %s", hour, minute,
+                        endTime.setText(String.format("%02d:%02d %s", hour, minute,
                                 hourOfDay < 12 ? "am" : "pm"));
                     }
                 }, mHour, mMinute, false);
                 timePickerDialog.show();
                 break;
-            case R.id.toTimeBttn:
+            case R.id.fromTimeBttn:
                 final Calendar t1 = Calendar.getInstance();
 
                 mHour = t1.get(Calendar.HOUR);
@@ -118,7 +116,7 @@ public class CreateEvent2 extends Activity implements View.OnClickListener {
                         int hour = hourOfDay % 12;
                         if (hour == 0)
                             hour = 12;
-                        endTime.setText(String.format("%02d:%02d %s", hour, minute,
+                        startTime.setText(String.format("%02d:%02d %s", hour, minute,
                                 hourOfDay < 12 ? "am" : "pm"));
                     }
                 }, mHour, mMinute, false);
@@ -136,7 +134,7 @@ public class CreateEvent2 extends Activity implements View.OnClickListener {
                         && !TextUtils.isEmpty(endDate1)
                         && !TextUtils.isEmpty(startTime1)
                         && !TextUtils.isEmpty(endTime1)) {
-                    SharedPreferences sp = getSharedPreferences("preference", Context.MODE_WORLD_READABLE);
+                    SharedPreferences sp = getSharedPreferences("preference", Context.MODE_PRIVATE);
                     SharedPreferences.Editor preferences = sp.edit();
 
                     preferences.putString("start_date", startDate1);
@@ -146,6 +144,9 @@ public class CreateEvent2 extends Activity implements View.OnClickListener {
                     preferences.putString("end_time", endTime1);
                     preferences.commit();
                     startActivity(new Intent(CreateEvent2.this, CreateEvent3.class));
+                }
+                else{
+                    Toast.makeText(CreateEvent2.this, "Please enter valid details", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

@@ -53,7 +53,7 @@
 
     <TextView
         android:layout_width="150dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_height="wrap_content"
         android:id="@+id/endDate"
         android:hint="Date"
@@ -71,7 +71,7 @@
 
     <TextView
         android:layout_width="150dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_height="wrap_content"
         android:hint="Date"
         android:id="@+id/startDate"
@@ -90,54 +90,53 @@
         android:layout_alignLeft="@+id/fromDate"
         android:layout_alignStart="@+id/fromDate" />
 
-    <TextView
-        android:layout_width="150dp"
-        android:textSize="20dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/endTime"
-        android:hint="Time"
-        android:layout_below="@+id/fromTime"
-        android:layout_alignLeft="@+id/fromTime"
-        android:layout_alignStart="@+id/fromTime"
-        android:layout_marginTop="8dp" />
-
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:id="@+id/fromTimeBttn"
-        android:layout_below="@+id/fromTime"
-        android:layout_alignLeft="@+id/endTime"
-        android:layout_alignStart="@+id/endTime" />
-
-    <TextView
-        android:layout_width="150dp"
-        android:textSize="20dp"
-        android:layout_height="wrap_content"
-        android:hint="Time"
-        android:id="@+id/startTime"
-        android:layout_alignBaseline="@+id/fromTimeBttn"
-        android:layout_alignBottom="@+id/fromTimeBttn"
-        android:layout_alignLeft="@+id/toTime"
-        android:layout_alignStart="@+id/toTime" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
         android:id="@+id/nextButton1"
         android:layout_marginTop="53dp"
-        android:layout_below="@+id/fromTimeBttn"
+        android:layout_below="@+id/toTimeBttn"
         android:layout_toRightOf="@+id/fromTime"
         android:layout_toEndOf="@+id/fromTime"
         android:layout_marginLeft="99dp"
         android:layout_marginStart="99dp" />
 
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:id="@+id/startTime"
+        android:hint="Time"
+        android:textSize="20sp"
+        android:layout_below="@+id/fromTime"
+        android:layout_alignLeft="@+id/fromTime"
+        android:layout_alignStart="@+id/fromTime" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:id="@+id/fromTimeBttn"
+        android:layout_below="@+id/fromTime"
+        android:layout_alignLeft="@+id/startTime"
+        android:layout_alignStart="@+id/startTime" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="40dp"
+        android:hint="Time"
+        android:id="@+id/endTime"
+        android:layout_alignTop="@+id/toTimeBttn"
+        android:layout_alignLeft="@+id/toTime"
+        android:layout_alignStart="@+id/toTime" />
+
     <Button
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:id="@+id/toTimeBttn"
-        android:layout_above="@+id/nextButton1"
-        android:layout_alignLeft="@+id/toTime"
-        android:layout_alignStart="@+id/toTime" />
+        android:layout_alignBaseline="@+id/fromTimeBttn"
+        android:layout_alignBottom="@+id/fromTimeBttn"
+        android:layout_alignLeft="@+id/endTime"
+        android:layout_alignStart="@+id/endTime" />
 
 </RelativeLayout>

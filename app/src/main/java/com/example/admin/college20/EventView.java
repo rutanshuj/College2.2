@@ -44,16 +44,16 @@ public class EventView extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        final String event_cat  = getIntent().getStringExtra("Category");
 
         FirebaseRecyclerAdapter<Event, RequestViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Event, RequestViewHolder>(
                 Event.class,
                 R.layout.events_list_row,
                 RequestViewHolder.class,
-                databaseReference
+                databaseReference.orderByChild("category").equalTo(event_cat)
         ) {
             @Override
             protected void populateViewHolder(RequestViewHolder viewHolder, Event model, int position) {
-
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setCategory(model.getCategory());

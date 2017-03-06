@@ -92,7 +92,7 @@ public class mp1_SwipeTab extends Fragment {
         public CharSequence getPageTitle(int position){
             switch(position){
                 case 0:
-                    return "Moi";
+                    return "Me";
                 case 1:
                     return "Home";
                 case 2:

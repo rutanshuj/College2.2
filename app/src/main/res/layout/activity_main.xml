@@ -6,6 +6,7 @@
     android:background="@drawable/login"
     android:visibility="visible"
     tools:context="com.example.admin.college20.MainActivity"
+
     >
 
     <EditText
@@ -19,6 +20,15 @@
         android:layout_marginTop="6dp"
         android:layout_gravity="center_vertical" />
 
+    <Button
+        android:textColor="@color/white"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/signIn"
+        android:background="@color/black"
+        android:layout_marginTop="420dp"
+        android:layout_marginLeft="-295dp"/>
+
     <EditText
         android:layout_width="265dp"
         android:layout_height="wrap_content"
@@ -30,14 +40,6 @@
         android:layout_marginLeft="-270dp"
         android:layout_gravity="center_vertical" />
 
-    <Button
-        android:textColor="@color/white"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/signIn"
-        android:background="@color/black"
-        android:layout_marginTop="420dp"
-        android:layout_marginLeft="-295dp"/>
     <Button
         android:layout_width="65dp"
         android:layout_height="25dp"

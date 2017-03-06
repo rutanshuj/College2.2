@@ -7,19 +7,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class CreateEvent1 extends AppCompatActivity {
-    private EditText mEventTitle, mEventCategory, mContact;
+    private EditText mEventTitle, mEventClub, mContact;
     Spinner spinner;
 
     private Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //Remove notification bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event1);
 
@@ -35,7 +44,7 @@ public class CreateEvent1 extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         mEventTitle = (EditText) findViewById(R.id.event_title);
-        mEventCategory = (EditText) findViewById(R.id.event_category);
+        mEventClub = (EditText) findViewById(R.id.event_club);
         mContact = (EditText) findViewById(R.id.contact_info);
         next = (Button) findViewById(R.id.nextButton0);
 
@@ -45,22 +54,26 @@ public class CreateEvent1 extends AppCompatActivity {
 
                 final String event_title = mEventTitle.getText().toString().trim();
                 final String contact = mContact.getText().toString().trim();
-                final String club = spinner.getSelectedItem().toString();
-                final String category = mEventCategory.getText().toString().trim();
+                final String event_cat = spinner.getSelectedItem().toString();
+                final String club = mEventClub.getText().toString().trim();
 
                 if (!TextUtils.isEmpty(event_title)
                         && !TextUtils.isEmpty(contact)
-                        && !TextUtils.isEmpty(club)) {
+                        && !TextUtils.isEmpty(event_cat)) {
+                    Intent i = new Intent(CreateEvent1.this, CreateEvent2.class);
 
-                    SharedPreferences sp = getSharedPreferences("preference", Context.MODE_WORLD_READABLE);
+                    SharedPreferences sp = getSharedPreferences("preference", Context.MODE_PRIVATE);
                     SharedPreferences.Editor preferences = sp.edit();
                     preferences.putString("title", event_title);
-                    preferences.putString("club", club);
+                    preferences.putString("event_cat", event_cat);
                     preferences.putString("contact", contact);
-                    preferences.putString("category", category);
+                    preferences.putString("club", club);
                     preferences.commit();
-                    Intent i = new Intent(CreateEvent1.this, CreateEvent2.class);
+
                     startActivity(i);
+                }
+                else{
+                    Toast.makeText(CreateEvent1.this, "Please enter valid details", Toast.LENGTH_SHORT).show();
                 }
             }
         });
