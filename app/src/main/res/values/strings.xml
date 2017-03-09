@@ -84,5 +84,6 @@
         <item>Science</item>
         <item>Technology</item>
     </string-array>
+    <string name="title_activity_navigation3">Navigation3</string>
 
 </resources>

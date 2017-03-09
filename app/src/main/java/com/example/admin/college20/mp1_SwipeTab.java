@@ -75,8 +75,8 @@ public class mp1_SwipeTab extends Fragment {
             switch(position){
                 case 0 : return new Moi_Frag();
                 case 1 : return new HomeFragment();
-                case 2 : return new HomeFragment();
-                case 3 : return new HomeFragment();
+                case 2 : return new UnderConstruction();
+                case 3 : return new UnderConstruction();
             }
 
             return null;

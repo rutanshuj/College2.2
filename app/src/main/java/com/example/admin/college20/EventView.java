@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,12 +19,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EventView extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     RecyclerView recyclerView;
+    int mExpandedPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,25 @@ public class EventView extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(EventView.this, "Image Selected", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onBindViewHolder(RequestViewHolder viewHolder, final int position) {
+                super.onBindViewHolder(viewHolder, position);
+
+                final boolean isExpanded = position == mExpandedPosition;
+
+
+                viewHolder.mView.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+                viewHolder.mView.setActivated(isExpanded);
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mExpandedPosition = isExpanded ? -1:position;
+                        TransitionManager.beginDelayedTransition(recyclerView);
+                        notifyDataSetChanged();
                     }
                 });
             }

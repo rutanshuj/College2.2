@@ -36,13 +36,15 @@
         <android.support.design.widget.NavigationView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:layout_marginTop="-24dp"
+            android:fitsSystemWindows="true"
             android:id="@+id/mainPage1DrawerView"
             app:menu="@menu/main_page1_menu"
+            android:background="@color/white"
+            app:headerLayout="@layout/nav_header_layout"
             />
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
