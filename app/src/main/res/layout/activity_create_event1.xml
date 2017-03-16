@@ -47,16 +47,6 @@
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="Contact Number"
-        android:id="@+id/contact_info"
-        android:inputType="textMultiLine"
-        android:layout_marginTop="31dp"
-        android:layout_below="@+id/event_club"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
         android:hint="Club Name"
         android:id="@+id/event_club"
         android:inputType="textMultiLine"
@@ -69,9 +59,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="18dp"
         android:id="@+id/nextButton0"
-        android:layout_below="@+id/contact_info"
+        android:layout_below="@+id/event_price"
         android:layout_centerHorizontal="true" />
 
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Contact Number"
+        android:id="@+id/contact_info"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/event_club"
+        android:layout_centerHorizontal="true" />
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Price"
+        android:layout_marginTop="16dp"
+        android:id="@+id/event_price"
+        android:layout_below="@+id/contact_info"
+        android:layout_alignStart="@+id/contact_info" />
 </RelativeLayout>

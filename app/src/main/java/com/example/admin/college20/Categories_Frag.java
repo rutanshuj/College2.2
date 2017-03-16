@@ -31,37 +31,37 @@ public class Categories_Frag extends Fragment implements View.OnClickListener {
         literature.setOnClickListener(this);
         science.setOnClickListener(this);
         tech.setOnClickListener(this);
-
         return view;
     }
     public void onClick(View view){
-        Toast.makeText(getContext(), "Button Clicked !!", Toast.LENGTH_SHORT).show();
+
         Intent i = new Intent(getActivity(), EventView.class);
 
         switch(view.getId()) {
             case R.id.arch:
-                String arch = "Architecture";
-                i.putExtra("Arch", arch);
-
+                String architecture = "Architecture";
+                i.putExtra("Category", architecture);
+                break;
             case R.id.artImg:
                 String art = "Art";
-                i.putExtra("Art", art);
-
+                i.putExtra("Category", art);
+                break;
             case R.id.businessImg:
                 String business = "Business";
-                i.putExtra("Business", business);
-
+                i.putExtra("Category", business);
+                break;
             case R.id.literatureImg:
-                String lit = "Literature";
-                i.putExtra("Literature", lit);
-
+                String literature = "Literature";
+                i.putExtra("Category", literature);
+                break;
             case R.id.scienceImg:
                 String science = "Science";
-                i.putExtra("Science", science);
-
+                i.putExtra("Category", science);
+                break;
             case R.id.techImg:
-                String tech = "Tech";
-                i.putExtra("Technology", tech);
+                String technology = "Technology";
+                i.putExtra("Category", technology);
+                break;
         }
         startActivity(i);
     }

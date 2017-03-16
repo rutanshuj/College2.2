@@ -1,40 +1,37 @@
 package com.example.admin.college20;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class EventView extends AppCompatActivity {
 
     DatabaseReference databaseReference;
+
     RecyclerView recyclerView;
-    int mExpandedPosition = -1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_view);
 
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("ApprovedEvents");
+
         recyclerView = (RecyclerView) findViewById(R.id.request_EventList);
 
         //Avoid unnecessary layout passes by setting setHasFixedSize to true
@@ -42,6 +39,7 @@ public class EventView extends AppCompatActivity {
 
         //Select the type of layout manager you would use for your recyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     @Override
@@ -49,44 +47,55 @@ public class EventView extends AppCompatActivity {
         super.onStart();
         final String event_cat  = getIntent().getStringExtra("Category");
 
-        FirebaseRecyclerAdapter<Event, RequestViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Event, RequestViewHolder>(
+        FirebaseRecyclerAdapter<Event, EventView.RequestViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Event, EventView.RequestViewHolder>(
                 Event.class,
                 R.layout.events_list_row,
-                RequestViewHolder.class,
+                EventView.RequestViewHolder.class,
                 databaseReference.orderByChild("category").equalTo(event_cat)
+
         ) {
             @Override
-            protected void populateViewHolder(RequestViewHolder viewHolder, Event model, int position) {
+            protected void populateViewHolder(EventView.RequestViewHolder viewHolder, Event model, int position) {
                 viewHolder.setTitle(model.getTitle());
-                viewHolder.setDesc(model.getDesc());
                 viewHolder.setCategory(model.getCategory());
                 viewHolder.setLocation(model.getLocation());
                 viewHolder.setPrice(model.getPrice());
                 viewHolder.setImageUrl(getApplicationContext(), model.getImageUrl());
 
+                final String desc = model.getDesc();
+                final String imageurl = model.getImageUrl();
+                final String start_date = model.getStart_date();
+                final String end_date = model.getEnd_date();
+                final String start_time = model.getStart_time();
+                final String end_time = model.getEnd_time();
+                final String club = model.getClub();
+                final String category = model.getCategory();
+                final String price = model.getPrice();
+                final String title = model.getTitle();
+                final String location = model.getLocation();
+                final String fblink = model.getFblink();
+                final String weblink = model.getWeblink();
+                final String contact = model.getContact();
+
                 viewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(EventView.this, "Image Selected", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onBindViewHolder(RequestViewHolder viewHolder, final int position) {
-                super.onBindViewHolder(viewHolder, position);
-
-                final boolean isExpanded = position == mExpandedPosition;
-
-
-                viewHolder.mView.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-                viewHolder.mView.setActivated(isExpanded);
-                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mExpandedPosition = isExpanded ? -1:position;
-                        TransitionManager.beginDelayedTransition(recyclerView);
-                        notifyDataSetChanged();
+                        Intent intent = new Intent(EventView.this, EventDetails.class);
+                        intent.putExtra("title", title);
+                        intent.putExtra("desc", desc);
+                        intent.putExtra("imageUrl", imageurl);
+                        intent.putExtra("start_date", start_date);
+                        intent.putExtra("end_date", end_date);
+                        intent.putExtra("start_time", start_time);
+                        intent.putExtra("end_time", end_time);
+                        intent.putExtra("club", club);
+                        intent.putExtra("category", category);
+                        intent.putExtra("price", price);
+                        intent.putExtra("location", location);
+                        intent.putExtra("fblink", fblink);
+                        intent.putExtra("weblink", weblink);
+                        intent.putExtra("contact", contact);
+                        startActivity(intent);
                     }
                 });
             }
@@ -107,11 +116,6 @@ public class EventView extends AppCompatActivity {
         public void setTitle(String title) {
             TextView a_title = (TextView) mView.findViewById(R.id.request_title);
             a_title.setText(title);
-        }
-
-        public void setDesc(String desc) {
-            TextView a_desc = (TextView) mView.findViewById(R.id.request_desc);
-            a_desc.setText(desc);
         }
 
         public void setLocation(String location) {

@@ -84,7 +84,7 @@ public class CreateEvent4 extends AppCompatActivity {
 
         final String event_contact = preferences.getString("contact","");
         final String club = preferences.getString("club", "");
-
+        final String price = preferences.getString("price", "");
         final String start_date = preferences.getString("start_date", "");
         final String end_date = preferences.getString("end_date","");
         final String start_time = preferences.getString("start_time", "");
@@ -108,6 +108,7 @@ public class CreateEvent4 extends AppCompatActivity {
                     newEvent.child("category").setValue(event_category);
                     newEvent.child("club").setValue(club);
                     newEvent.child("contact").setValue(event_contact);
+                    newEvent.child("price").setValue(price);
 
                     newEvent.child("start_date").setValue(start_date);
                     newEvent.child("end_date").setValue(end_date);

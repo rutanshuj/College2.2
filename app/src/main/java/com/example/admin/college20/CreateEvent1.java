@@ -16,7 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class CreateEvent1 extends AppCompatActivity {
-    private EditText mEventTitle, mEventClub, mContact;
+    private EditText mEventTitle, mEventClub, mContact, mPrice;
     Spinner spinner;
 
     private Button next;
@@ -46,6 +46,7 @@ public class CreateEvent1 extends AppCompatActivity {
         mEventTitle = (EditText) findViewById(R.id.event_title);
         mEventClub = (EditText) findViewById(R.id.event_club);
         mContact = (EditText) findViewById(R.id.contact_info);
+        mPrice = (EditText) findViewById(R.id.event_price);
         next = (Button) findViewById(R.id.nextButton0);
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -56,10 +57,12 @@ public class CreateEvent1 extends AppCompatActivity {
                 final String contact = mContact.getText().toString().trim();
                 final String event_cat = spinner.getSelectedItem().toString();
                 final String club = mEventClub.getText().toString().trim();
+                final String price = mPrice.getText().toString().trim();
 
                 if (!TextUtils.isEmpty(event_title)
                         && !TextUtils.isEmpty(contact)
-                        && !TextUtils.isEmpty(event_cat)) {
+                        && !TextUtils.isEmpty(event_cat)
+                        && !TextUtils.isEmpty(price)) {
                     Intent i = new Intent(CreateEvent1.this, CreateEvent2.class);
 
                     SharedPreferences sp = getSharedPreferences("preference", Context.MODE_PRIVATE);
@@ -68,6 +71,7 @@ public class CreateEvent1 extends AppCompatActivity {
                     preferences.putString("event_cat", event_cat);
                     preferences.putString("contact", contact);
                     preferences.putString("club", club);
+                    preferences.putString("price", price);
                     preferences.commit();
 
                     startActivity(i);
