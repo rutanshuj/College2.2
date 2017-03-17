@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso;
 import java.util.zip.Inflater;
 
 public class EventDetails extends AppCompatActivity {
-
     ImageView eventImage;
     TextView title1, desc1, location1, category1, price1,
             start_date1, end_date1, start_time1, end_time1, fblink1, weblink1, contact1, club1;
@@ -44,7 +43,6 @@ public class EventDetails extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarEventDetails);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         Intent intent = getIntent();
@@ -62,7 +60,6 @@ public class EventDetails extends AppCompatActivity {
         final String fblink = intent.getStringExtra("fblink");
         final String weblink = intent.getStringExtra("weblink");
         final String contact = intent.getStringExtra("contact");
-
 
         desc1.setText(desc);
         title1.setText(title);

@@ -64,8 +64,7 @@ public class CreateEvent4 extends AppCompatActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.setMessage("Uploading Data");
-                progressDialog.show();
+
                 startPosting();
             }
         });
@@ -99,6 +98,8 @@ public class CreateEvent4 extends AppCompatActivity {
             filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressDialog.setMessage("Uploading Data");
+                    progressDialog.show();
 
                     Uri uri = taskSnapshot.getDownloadUrl();
 
@@ -148,6 +149,4 @@ public class CreateEvent4 extends AppCompatActivity {
             eventImage.setImageURI(imageUri);
         }
     }
-
 }
-
