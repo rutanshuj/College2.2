@@ -1,7 +1,11 @@
 package com.example.admin.college20;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -12,14 +16,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -28,11 +41,11 @@ public class Moi_Frag extends Fragment {
     FloatingActionButton floatingActionButton;
     private static final int GALLERY_INTENT = 1;
     private Uri imageUri = null;
-    TextView name1, email1;
+    TextView text_name, text_email;
+    ProgressDialog progressDialog;
 
     private String uid;
-
-
+    StorageReference storageReference;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,12 +53,13 @@ public class Moi_Frag extends Fragment {
 
         imageView = (ImageView) mView.findViewById(R.id.profile_image);
         floatingActionButton = (FloatingActionButton) mView.findViewById(R.id.floatingActionButton);
-        name1 = (TextView) mView.findViewById(R.id.moi_name);
-        email1 = (TextView) mView.findViewById(R.id.moi_email);
+        text_name = (TextView) mView.findViewById(R.id.moi_name);
+        text_email = (TextView) mView.findViewById(R.id.moi_email);
 
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            //Go to login
-        } else {
+        progressDialog = new ProgressDialog(getContext());
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+
             uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference().child("Users").child(uid);
@@ -54,21 +68,26 @@ public class Moi_Frag extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     User user = dataSnapshot.getValue(User.class);
-                    String req_name = user.getName();
-                    String req_email = user.getEmail();
-                    String req_imageUrl = user.getImageUrl();
 
-                    name1.setText(req_name);
-                    email1.setText(req_email);
-                    Picasso.with(getContext()).load(req_imageUrl).into(imageView);
+                    final String name = user.getName();
+                    final String email  = user.getEmail();
+                    final String imageUrl = user.getImageUrl();
+                    Uri uri = Uri.parse(imageUrl.toString());
+
+                    SharedPreferences moiPref =  getActivity().getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = moiPref.edit();
+                    editor.putString("uriLastSeg", uri.getLastPathSegment());
+                    editor.commit();
+
+                    text_name.setText(name);
+                    text_email.setText(email);
+                    Picasso.with(getContext()).load(imageUrl).into(imageView);
                 }
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
             });
-        }
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,8 +104,50 @@ public class Moi_Frag extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
             imageUri = data.getData();
-            imageView.setImageURI(imageUri);
+            if(imageUri!=null){
+                imageUploading();
+            }
         }
+    }
+    private void imageUploading() {
+        progressDialog.setMessage("Changing Yo Pic");
+        progressDialog.show();
+        final SharedPreferences pref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        final String id = pref.getString("uriLastSeg", "");
+        final StorageReference prevFilepath = storageReference.child("Images").child(id);
+        StorageReference filepath = storageReference.child("Images").child(imageUri.getLastPathSegment());
+        filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                prevFilepath.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                    Toast.makeText(getContext(), "Try Again", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                Uri uri = taskSnapshot.getDownloadUrl();
+                final String uid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                Map<String,Object> taskMap = new HashMap<String,Object>();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid1);
+
+                taskMap.put("imageUrl", uri.toString());
+
+                databaseReference.updateChildren(taskMap);
+                progressDialog.dismiss();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), "Try Again!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

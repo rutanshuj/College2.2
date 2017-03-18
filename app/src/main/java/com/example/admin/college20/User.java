@@ -1,9 +1,5 @@
 package com.example.admin.college20;
 
-/**
- * Created by RutanshuJhaveri on 3/17/2017.
- */
-
 public class User {
     private String imageUrl, name, email;
 
@@ -36,7 +32,5 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) {this.email = email;}
 }
