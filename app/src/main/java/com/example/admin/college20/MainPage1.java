@@ -15,7 +15,12 @@ import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,6 +32,7 @@ public class MainPage1 extends AppCompatActivity {
     NavigationView mp1NavigationView;
     DrawerLayout mp1NavigationLayout;
     FragmentManager mp1FragmentManager;
+    private GoogleApiClient mGoogleApiClient;
     private DatabaseReference mDatabaseUsers;
     FragmentTransaction mp1FragmentTransaction;
     Toolbar mp1_toolbar;
@@ -46,12 +52,27 @@ public class MainPage1 extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() == null) {
                     //if returns null then user is not logged in
-                    Intent loginIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+                    Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(loginIntent);
                 }
             }
         };
+
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
+                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                        Toast.makeText(MainPage1.this, "You got an Error", Toast.LENGTH_SHORT).show();
+                    }
+                }).addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseUsers.keepSynced(true);
@@ -96,8 +117,8 @@ public class MainPage1 extends AppCompatActivity {
                     startActivity(i);
                 }
                 if( item.getItemId() == R.id.action_logout){
-
-                   logout();
+                    Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+                    mAuth.signOut();
                 }
                 if( item.getItemId() == R.id.event_list){
                     Intent i = new Intent(getApplicationContext(), EventView.class);

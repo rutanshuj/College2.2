@@ -49,5 +49,11 @@
         android:background="@color/black"
         />
 
+    <com.google.android.gms.common.SignInButton
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/googleSignInBttn"
+        android:layout_marginTop="480dp"
+        android:layout_marginLeft="-300dp"/>
 
 </LinearLayout>

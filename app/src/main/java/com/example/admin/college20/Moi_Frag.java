@@ -10,11 +10,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,10 +32,12 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static android.app.Activity.RESULT_OK;
 
 public class Moi_Frag extends Fragment {
-    ImageView imageView;
+    CircleImageView imageView;
     FloatingActionButton floatingActionButton;
     private static final int GALLERY_INTENT = 1;
     private Uri imageUri = null;
@@ -51,7 +51,7 @@ public class Moi_Frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.activity_moi__frag, container, false);
 
-        imageView = (ImageView) mView.findViewById(R.id.profile_image);
+        imageView = (CircleImageView) mView.findViewById(R.id.register_image);
         floatingActionButton = (FloatingActionButton) mView.findViewById(R.id.floatingActionButton);
         text_name = (TextView) mView.findViewById(R.id.moi_name);
         text_email = (TextView) mView.findViewById(R.id.moi_email);
