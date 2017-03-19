@@ -1,7 +1,9 @@
 package com.example.admin.college20;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -75,7 +78,12 @@ public class MainPage1 extends AppCompatActivity {
                 .build();
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
-        mDatabaseUsers.keepSynced(true);
+
+        final SharedPreferences user = getSharedPreferences("user", Context.MODE_PRIVATE);
+        final String uid = user.getString("id", "");
+
+        Log.d("userId", uid);
+
         mp1_toolbar = (Toolbar) findViewById(R.id.toolbar_mp1);
         mp1NavigationLayout = (DrawerLayout) findViewById(R.id.mainPage1DrawerLayout);
         mp1NavigationView = (NavigationView) findViewById(R.id.mainPage1DrawerView);
@@ -145,11 +153,6 @@ public class MainPage1 extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void logout()
-    {
-        mAuth.signOut();
     }
 
     @Override

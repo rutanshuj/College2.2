@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class CreateEvent4 extends AppCompatActivity {
     private EditText mEventDesc;
@@ -64,13 +66,16 @@ public class CreateEvent4 extends AppCompatActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startPosting();
             }
         });
     }
     public void startPosting() {
-
+        progressDialog.setMessage("Uploading Data");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
+        
         Intent in = getIntent();
         final String event_location = in.getStringExtra("location");
         final String fblink = in.getStringExtra("fblink");
@@ -98,8 +103,7 @@ public class CreateEvent4 extends AppCompatActivity {
             filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressDialog.setMessage("Uploading Data");
-                    progressDialog.show();
+
 
                     Uri uri = taskSnapshot.getDownloadUrl();
 
@@ -146,7 +150,7 @@ public class CreateEvent4 extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
             imageUri = data.getData();
-            eventImage.setImageURI(imageUri);
+            Picasso.with(this).load(imageUri).into(eventImage);
         }
     }
 }

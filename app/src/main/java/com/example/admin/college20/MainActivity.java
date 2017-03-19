@@ -5,7 +5,9 @@ import android.app.ProgressDialog;
 
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,9 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText mEmail;
-    private EditText mPassword;
-    private Button mLoginButton, mSignUpButton;
+
     private ProgressDialog progressDialog;
    private DatabaseReference mDatabaseUsers;
 
@@ -58,18 +58,6 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
-        mDatabaseUsers.keepSynced(true);
-
-        mEmail = (EditText) findViewById(R.id.mpEmail);
-        mPassword = (EditText) findViewById(R.id.mpPassword);
-        mLoginButton = (Button) findViewById(R.id.signIn);
-        mSignUpButton = (Button) findViewById(R.id.sign_up);
-
-        mLoginButton.setVisibility(View.VISIBLE);
-        mLoginButton.setBackgroundColor(Color.TRANSPARENT);
-
-        mSignUpButton.setVisibility(View.VISIBLE);
-        mSignUpButton.setBackgroundColor(Color.TRANSPARENT);
 
         googleSignIn = (SignInButton) findViewById(R.id.googleSignInBttn);
         progressDialog = new ProgressDialog(this);
@@ -106,73 +94,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mSignUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(i);
-            }
-        });
-
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                checkLogin();
-                }
-        });
-    }
-    private void checkLogin() {
-        String Email = mEmail.getText().toString().trim();
-        String Password = mPassword.getText().toString().trim();
-
-        if(!TextUtils.isEmpty(Email) && !TextUtils.isEmpty(Password)){
-            progressDialog.setMessage("Signing In..");
-            progressDialog.show();
-            mAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-
-                        progressDialog.dismiss();
-                        checkUserExists();
-                    }
-                    else {
-                        progressDialog.dismiss();
-                        Toast.makeText(MainActivity.this, "Error Logging In", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-        else{
-            Toast.makeText(MainActivity.this, "Please enter details", Toast.LENGTH_SHORT).show();
-
-        }
     }
 
-    private void checkUserExists() {
-        final String user_id = mAuth.getCurrentUser().getUid();
-
-        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(user_id)){
-                    Intent i = new Intent(MainActivity.this, MainPage1.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i);
-
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "Hey bro, make an account", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     @Override
     protected void onStart() {
@@ -206,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -222,7 +145,30 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        // ...
+                        else{
+                            final String personName =  account.getDisplayName();
+                            final String personEmail = account.getEmail();
+                            final String personGivenName = account.getGivenName();
+                            final String personId = account.getId();
+                            Uri personPhotoUrl = account.getPhotoUrl();
+                            String personPhoto = personPhotoUrl.toString();
+
+                            //SharedPreferences user_details = getSharedPreferences("user_details", MODE_PRIVATE);
+                            //SharedPreferences.Editor editor = user_details.edit();
+                            ///editor.putString("name", personName);
+                            //editor.putString("email", personEmail);
+                            //    editor.putString("givenName", personGivenName);
+                            //editor.putString("id", personId);
+                            // editor.putString("imageUrl", personPhoto);
+                            //editor.commit();
+
+                            final String uid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DatabaseReference current_user_db =  mDatabaseUsers.child(uid1);
+                            current_user_db.child("name").setValue(personName);
+                            current_user_db.child("imageUrl").setValue(personPhoto);
+                            current_user_db.child("email").setValue(personEmail);
+                            current_user_db.child("user_id").setValue(personId);
+                        }
                     }
                 });
     }

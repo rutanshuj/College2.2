@@ -65,7 +65,7 @@ public class CreateEvent1 extends AppCompatActivity {
                         && !TextUtils.isEmpty(price)) {
                     Intent i = new Intent(CreateEvent1.this, CreateEvent2.class);
 
-                    SharedPreferences sp = getSharedPreferences("preference", Context.MODE_PRIVATE);
+                        SharedPreferences sp = getSharedPreferences("preference", Context.MODE_PRIVATE);
                     SharedPreferences.Editor preferences = sp.edit();
                     preferences.putString("title", event_title);
                     preferences.putString("event_cat", event_cat);
